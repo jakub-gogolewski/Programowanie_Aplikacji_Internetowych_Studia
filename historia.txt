@@ -1,0 +1,27 @@
+    1  git clone https://github.com/jakub-gogolewski/k27.git
+    2  ls
+    3  cd k27
+    4  touch plik
+    5  git push
+    6  git commit
+    7  git merge
+    8  ls
+    9  echo "wsb" > plik
+   10  git status
+   11  git add *
+   12  git status
+   13  git commit 
+   14    git config --global user.email "jak.gogolewski@gmail.com"
+   15    git config --global user.name "Jakub Gogolewski"
+   16  git commit 
+   17  git commit 
+   18  git commit 
+   19  git push
+   20  git status
+   21  git add
+   22  git commit -m
+   23  git commit -m "add file"
+   24  git add *
+   25  git commit -m "add file"
+   26  git push
+   27  history > historia.txt 
