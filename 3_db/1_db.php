@@ -25,6 +25,22 @@
 <?php
 
         require_once "../scripts/connect.php";
+        $sql = "SELECT * FROM `users`;";
+        $result = $conn->query($sql);
+        // $user = $result->fetch_assoc();
+        // echo $user["firstname"];
+        
+        while($user = $result->fetch_assoc()){
+           
+            echo <<< USER
+            
+            Imie i nazwisko: $user[firstname] $user[lastname]<br>
+            Data urodzenia: $user[birthday]<br><br>
+
+            USER;
+        }
+        
+$conn->close();
 
 ?>
     
