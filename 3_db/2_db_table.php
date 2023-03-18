@@ -15,13 +15,16 @@
 </head>
 
 <body>
-<MARQUEE SCROLLAMOUNT=40 BEHAVIOR=ALTERNATE><h4>Użytkownicy</h4>
+<h4>Użytkownicy</h4>
         <table>
 
         <tr>
             <th>Imię</th>
             <th>Nazwisko</th>
             <th>Data urodzenia</th>
+            <th>Miasto</th>
+            <th>Województwo</th>
+            <th>Państwo</th>
         </tr>
 
 
@@ -29,7 +32,7 @@
 
         
         require_once "../scripts/connect.php";
-        $sql = "SELECT *,cities.city FROM `users` natural join `cities`;";
+        $sql = "SELECT * FROM `users` natural join `cities` natural join `states` inner join `countries` c on c.id=states.id_country ;";
         $result = $conn->query($sql);
         // $user = $result->fetch_assoc();
         // echo $user["firstname"];
@@ -42,11 +45,14 @@
                 <td>$user[firstname]</td>
                 <td>$user[lastname]</td>
                 <td>$user[birthday]</td>
+                <td>$user[city]</td>
+                <td>$user[state]</td>
+                <td>$user[name]</td>
             </tr>
 
             TABLEUSERS;
         }
-        echo "</table></MARQUEE>";
+        echo "</table>";
 
 $conn->close();
 
