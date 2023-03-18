@@ -1,0 +1,16 @@
+
+body{
+    background-color: #09143C;
+    color: snow;
+    font-family: 'Roboto', sans-serif;
+    font-size: 35px;
+    text-shadow: 2px 2px 4px black;
+}
+
+table, tr, th, td{
+
+    border: 1px solid grey;
+    text-align: center;
+    border-collapse: collapse;
+    padding: 10px;
+}
