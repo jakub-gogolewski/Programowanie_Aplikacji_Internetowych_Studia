@@ -15,7 +15,18 @@
 </head>
 
 <body>
-<h4>Użytkownicy</h4>
+<div style="text-align: center;"><h1>Użytkownicy</h1></div>
+
+<?php
+
+if(isset($_GET["userDelete"])){
+if($_GET["userDelete"]==0){
+    echo "<h4>Nie usunięto użytkownika</h4>";
+}else{
+    echo "<h4>Usunięto użytkownika o ID=$_GET[userDelete]!</h4>";
+}}
+
+?>
         <table>
 
         <tr>
@@ -32,14 +43,19 @@
 
         
         require_once "../scripts/connect.php";
-    $sql = "SELECT `u`.`firstname` as `firstname`, `u`.`lastname`, `u`.`birthday`, `c`.`city`, `s`.`state`, `co`.`country` FROM `users` u JOIN `cities` c ON `u`.`city_id`=`c`.`id` JOIN `states` s ON `c`.`state_id`=`s`.`id` JOIN `countries` co ON `s`.`country_id`=`co`.`id`;";
+        $sql = "SELECT u.id as userId, `u`.`firstname` as `firstname`, `u`.`lastname`, `u`.`birthday`, `c`.`city`, `s`.`state`, `co`.`country` FROM `users` u JOIN `cities` c ON `u`.`city_id`=`c`.`id` JOIN `states` s ON `c`.`state_id`=`s`.`id` JOIN `countries` co ON `s`.`country_id`=`co`.`id`;";
         $result = $conn->query($sql);
+
+        //echo $result->num_rows;
         // $user = $result->fetch_assoc();
         // echo $user["firstname"];
-        
-        while($user = $result->fetch_assoc()){
-           
-            echo <<< TABLEUSERS
+        if ($result->num_rows == 0){
+            echo "<h4>LUDZIE TU NIKOGO NIE MA</h4>";
+            echo "<tr><td colspan='6'>Brak użytkowników</td></tr>";
+        }else{
+            while($user = $result->fetch_assoc()){
+
+                echo <<< TABLEUSERS
             
             <tr>
                 <td>$user[firstname]</td>
@@ -48,10 +64,13 @@
                 <td>$user[city]</td>
                 <td>$user[state]</td>
                 <td>$user[country]</td>
+                <td><a href="../scripts/delete_user.php?userIdDelete=$user[userId]">Usuń</a></td>
             </tr>
 
             TABLEUSERS;
+            }
         }
+
         echo "</table>";
 
 $conn->close();
