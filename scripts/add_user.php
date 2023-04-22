@@ -25,6 +25,6 @@ $sql = "INSERT INTO `users` (`id`, `city_id`, `firstname`, `lastname`, `birthday
 $conn->query($sql);
 
 
-header("location: ../3_db/4_db_table_add.php");
+header("location: ../3_db/5_db_table_add_update.php");
 
 ?>
